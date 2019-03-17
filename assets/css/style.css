@@ -436,6 +436,9 @@ body {
     .footer .container {
         max-width: 1300px;
     }
+    .box-showcase {
+        width: 1450px;
+    }
 }
 
 @media (min-width: 1900px) {
