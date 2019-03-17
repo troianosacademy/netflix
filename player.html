@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Projeto Netflix</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    
+    <div class="box-loading">
+        <img src="assets/icons/loading.svg" class="loading" />
+    </div>
+
+    <a href="title.html" class="back">
+        < Voltar
+    </a>
+
+    <div class="overlay"></div>
+    
+
+    <div class="video embed-responsive embed-responsive-16by9">
+        <video id="video" controls class="embed-responsive-item" autoplay>
+            <source src="assets/video/video.mp4" type="video/mp4">
+        </video>
+    </div>
+    
+    
+    <script src="assets/js/jquery-3.3.1.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script>
+        let video = document.getElementById('video');
+        video.autoplay = true;
+        video.load();
+        setTimeout(function(){
+            $('.overlay').css({opacity: 0})
+        },2000);
+        setTimeout(function(){
+            $('.overlay').remove();
+        },3999);
+    </script>
+   
+    
+</body>
+</html>
