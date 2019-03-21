@@ -3,8 +3,8 @@
 {% block content %}
 
 <div class="col-md-12">
-    <h1 class="float-left">Filme</h1>
-    <a class="float-right btn btn-outline-secondary mt-1" href="/admin/movies">Voltar</a>
+    <h1 class="float-left">{{ 'Filmes' if type == TitleType.MOVIE else 'Series' }}</h1>
+    <a class="float-right btn btn-outline-secondary mt-1" href="/admin/titles">Voltar</a>
     <div class="clearfix"></div>
     <hr />
 </div>
@@ -20,10 +20,12 @@
                         {% endif %}
 
     <form method="post"  encType="multipart/form-data">
-    <input type="hidden" name="_id" value="{{ movie._id }}" />
+    <input type="hidden" name="_id" value="{{ title._id }}" />
+    <input type="hidden" name="type" value="{{ type }}" />
+
     <div class="form-group">
         <label for="name">Título</label>
-        <input type="text" class="form-control" name="title" value="{{ movie.title }}">
+        <input type="text" class="form-control" name="title" value="{{ title.title }}">
     </div>
 
     <div class="row">
@@ -31,30 +33,30 @@
             <label for="name">Categoria</label>
             <select name="category" class="form-control">
                 {% for category in categories %}
-                    <option {{ 'selected=selected' if category.id == movie.categoryId else "" }}  value="{{ category._id }}">{{ category.name }}</option>
+                    <option {{ 'selected=selected' if category.id == title.categoryId else "" }}  value="{{ category._id }}">{{ category.name }}</option>
                 {% endfor %}
             </select>
         </div>
     
         <div class="form-group col-md-4">
             <label for="name">Duração em minutos</label>
-            <input name='durationMinutes' value="{{ movie.durationMinutes }}" type="number"  class="form-control" />
+            <input name='durationMinutes' value="{{ title.durationMinutes }}" type="number"  class="form-control" />
         </div>
 
         <div class="form-group col-md-4">
             <label for="name">Censura (idade)</label>
-            <input name='age' value="{{ movie.age }}" type="number"  class="form-control" />
+            <input name='age' value="{{ title.age }}" type="number"  class="form-control" />
         </div>
     </div>
 
      <div class="form-group">
             <label for="name">Tags</label>
-            <input name='tags' value="{{ movie.tags }}" type="text"  class="form-control" />
+            <input name='tags' value="{{ title.tags }}" type="text"  class="form-control" />
         </div>
 
      <div class="form-group">
         <label for="name">Sinopse</label>
-        <textarea name='synopsis'  class="form-control">{{ movie.synopsis }}</textarea>
+        <textarea name='synopsis'  class="form-control">{{ title.synopsis }}</textarea>
     </div>
 
     <div class="form-group">
@@ -62,11 +64,12 @@
         <input type="file" class="form-control-file" name="fileImageCover">
     </div>
 
-    <div class="form-group">
-        <label for="name">Vídeo (.mp4)</label>
-        <input type="file" class="form-control-file" name="fileVideo">
-    </div>
-
+    {% if type == TitleType.Movie %}
+        <div class="form-group">
+            <label for="name">Vídeo (.mp4)</label>
+            <input type="file" class="form-control-file" name="fileVideo">
+        </div>
+    {% endif %}
 
     <button type="submit" class="btn btn-primary">Gravar</button>
     </form>

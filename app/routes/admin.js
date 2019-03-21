@@ -1,8 +1,7 @@
 const AuthController = require('../controllers/admin/AuthController');
 const DashboardController = require('../controllers/admin/DashboardController');
 const CategoryController = require('../controllers/admin/CategoryController');
-const MovieController = require('../controllers/admin/MovieController');
-const SerieController = require('../controllers/admin/SerieController');
+const TitleController = require('../controllers/admin/TitleController');
 
 const authMiddleware = require('../middlewares/authMiddleware');
 const UserRole = require('../business/Constants/UserRole');
@@ -26,14 +25,10 @@ router.get('/category/remove/:id', CategoryController.remove);
 router.post('/category', CategoryController.save);
 router.post('/category/:id', CategoryController.save);
 
-/* Movie */
-router.get('/movies', MovieController.index);
-router.get('/movie/:id', MovieController.record);
-router.get('/movie', MovieController.record);
-router.post('/movie', MovieController.save);
-router.post('/movie/:id', MovieController.save);
-
-/* Movie */
-router.get('/series', SerieController.index);
+/* Title */
+router.get('/movies', TitleController.movies);
+router.get('/series', TitleController.series);
+router.get(['/title', '/title/:id'], TitleController.record);
+router.post(['/title', '/title/:id'], TitleController.save);
 
 module.exports = router;

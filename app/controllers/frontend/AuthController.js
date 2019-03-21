@@ -14,13 +14,15 @@ module.exports = {
   sigin: async (req, res) => {
     let siginUser = await UserService.login(req.body.email, req.body.password);
 
+    console.log(req.body)
+
     if (!siginUser.isValid) {
       res.render('frontend/auth/login.html', { email: req.body.email, errors: siginUser.errors });
     } else {
       req.session.user = await UserService.getByEmailAndPassword(req.body.email, req.body.password);
 
-      if (!req.query.returnUrl)
-        return res.redirect('/');
+      if (req.body.returnUrl)
+        return res.redirect(req.body.returnUrl);
 
       return res.redirect('/');
     }

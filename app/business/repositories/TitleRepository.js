@@ -32,7 +32,7 @@ module.exports = {
 
   getByType: async function(type) { return await this.getBy({ type }) },
 
-  getByTypeAndCategory: async function(type, category) { return await this.getBy({ type, category }) },
+  getByTypeAndCategory: async function(type, categoryId) { return await this.getBy({ type, categoryId: mongoose.Types.ObjectId(categoryId) }) },
 
   insert: async (title) => await Title.create(title),
 
@@ -41,6 +41,29 @@ module.exports = {
   search: async (query) => await Title.find({ title: { '$regex': query, '$options': 'i' } }),
 
   getFixedOnHome: async function() { return await this.getBy({ isFixedOnHome: true }).then(results => results[0]) },
+
+  getEpisodeById: async function(episodeId) {
+
+    return Title.aggregate([
+
+      { "$unwind": "$seasons" },
+      {
+        "$replaceRoot": {
+          "newRoot": { "$mergeObjects": ["$$ROOT", "$seasons"] }
+        }
+      },
+      { "$unwind": "$episodes" },
+      {
+        "$replaceRoot": {
+          "newRoot": { "$mergeObjects": ["$episodes", "$$ROOT"] }
+        }
+      },
+      { $match: { 'episodes._id': mongoose.Types.ObjectId(episodeId) } },
+
+      { "$project": { "episodes": 1 } },
+
+    ]).then(x => x[0] ? x[0].episodes : null)
+  },
 
   getAllGroupByCategory: async () => {
     return await Title.aggregate([

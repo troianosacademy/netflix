@@ -7,7 +7,7 @@ const CategoryRepository = require('./app/business/repositories/CategoryReposito
 const TitleRepository = require('./app/business/repositories/TitleRepository');
 
 (async _ => {
-  var title = await TitleRepository.getAll();
+  var title = await TitleRepository.getEpisodeById('5c908248046b41870cb74e91');
 
   console.log(title)
   /*var titles = await TitleRepository.getAll();

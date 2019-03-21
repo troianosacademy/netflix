@@ -1,6 +1,7 @@
 const nunjucks = require('nunjucks');
 const TitleService = require('../../business/services/TitleService');
 const TitleType = require('../../business/constants/TitleType');
+const CategoryService = require('../../business/services/CategoryService');
 
 module.exports = {
   index: async (req, res) => {
@@ -13,10 +14,10 @@ module.exports = {
     if (req.query.category == null) {
       model = { titles: await TitleService.getByType(TitleType.SERIE) };
     } else {
-      model = { titles: await TitleService.getByTypeAndCategory(TitleType.SERIE, req.query.category) }
+      model = { titles: await TitleService.getByTypeAndCategory(TitleType.SERIE, req.query.category) };
     }
 
-    model.categories = await TitleService.getAllCategories();
+    model.categories = await CategoryService.getAll();
 
     res.render('frontend/title/byType.html', model);
   },
@@ -29,18 +30,30 @@ module.exports = {
       model = { titles: await TitleService.getByTypeAndCategory(TitleType.MOVIE, req.query.category) }
     }
 
-    model.categories = await TitleService.getAllCategories();
+    model.categories = await CategoryService.getAll();
 
     res.render('frontend/title/byType.html', model);
 
   },
 
   details: async (req, res) => {
-    res.render('frontend/title/details.html', { title: await TitleService.getById(req.query.id), recents: await TitleService.getRecents() });
+    var model = {
+      season: req.query.season,
+      title: await TitleService.getById(req.query.id),
+      recents: await TitleService.getRecents()
+    };
+
+    if (model.season) {
+      model.episodes = model.title.seasons.find(x => x.number == model.season).episodes;
+    } else {
+      model.episodes = model.title.seasons.find(x => x.number == 1).episodes;
+    }
+
+    res.render('frontend/title/details.html', model);
   },
 
   play: async (req, res) => {
-    res.render('frontend/title/player.html', { title: await TitleService.getById(req.query.id) });
+    res.render('frontend/title/player.html', { title: req.query.ep ? await TitleService.getEpisodeById(req.query.ep) : await TitleService.getById(req.query.id) });
   },
 
   search: async (req, res) => {

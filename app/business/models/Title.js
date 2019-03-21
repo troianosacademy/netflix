@@ -15,5 +15,6 @@ module.exports = mongoose.model('Title', {
   year: Number,
   createdAt: Date,
   isFixedOnHome: Boolean,
-  seasons: [{ number: Number, episodes: [{ videoFileName: String, title: String, durationMinutes: Number, synopsis: String, imageCoverFilename: String }] }]
+  totalSeasons: Number,
+  seasons: [{ number: Number, totalEpisodes: Number, year: Number, episodes: [{ videoFileName: String, title: String, durationMinutes: Number, synopsis: String, imageCoverFilename: String, number: Number }] }]
 });

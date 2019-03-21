@@ -28,7 +28,7 @@ Sistema semelhante ao Netflix, projeto final do curso de Nodejs
 - [x] Listagem de títulos agrupados por categoria
 - [x] Listagem de filmes
 - [x] Listagem de séries
-- [ ] Listagem de episódios por série
+- [x] Listagem de episódios por série
 - [x] Player de filmes e séries
 - [x] Busca
 - [x] Alterar dados do usuário
@@ -55,9 +55,9 @@ Sistema semelhante ao Netflix, projeto final do curso de Nodejs
 
 **4. Series**
 
-- [ ] Listagem
-- [ ] Cadastro com validação e upload de arquivo (capa)
-- [ ] Edição com validação e upload de arquivo (capa)
+- [x] Listagem
+- [x] Cadastro com validação e upload de arquivo (capa)
+- [x] Edição com validação e upload de arquivo (capa)
 - [ ] Cadastro de temporadas com validação
 - [ ] Upload de vídeos e capas para cada episódio por temporada
 

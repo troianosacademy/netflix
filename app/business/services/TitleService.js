@@ -1,6 +1,6 @@
 const TitleRepository = require('../repositories/TitleRepository');
 const TitleType = require('../constants/TitleType');
-const MovieValidatior = require('../validations/MovieValidator');
+const TitleValidator = require('../validations/TitleValidator');
 const md5 = require('md5');
 const path = require('path')
 
@@ -17,11 +17,11 @@ module.exports = {
 
   getByType: async type => await TitleRepository.getByType(type),
 
+  getEpisodeById: async (episodeId) => await TitleRepository.getEpisodeById(episodeId),
+
   getAllMovies: async () => await TitleRepository.getByType(TitleType.MOVIE),
 
   getAllSeries: async () => await TitleRepository.getByType(TitleType.SERIE),
-
-  getAllCategories: async () => await TitleRepository.getAllCategories(),
 
   search: async query => await TitleRepository.search(query),
 
@@ -41,28 +41,28 @@ module.exports = {
     });
   },
 
-  save: async function(movie) {
-    movie.tags = movie.tags.split(",").map((item) => item.trim());
-
-    let validation = await MovieValidatior.save(movie);
+  save: async function(title) {
+    let validation = await TitleValidator.save(title);
 
     if (!validation.isValid) {
       return validation;
     }
 
-    if (movie.fileImageCover && movie.fileImageCover.size) {
-      movie.imageCoverFilename = await this.upload(movie.fileImageCover, 'public/uploads/covers/');
+    if (title.fileImageCover && title.fileImageCover.size) {
+      title.imageCoverFilename = await this.upload(title.fileImageCover, 'public/uploads/covers/');
     }
 
-    if (movie.fileVideo && movie.fileVideo.size) {
-      movie.videoFileName = await this.upload(movie.fileVideo, 'public/uploads/movies/');
+    if (title.fileVideo && title.fileVideo.size) {
+      title.videoFileName = await this.upload(title.fileVideo, 'public/uploads/movies');
     }
 
-    if (movie._id != null) {
-      return await TitleRepository.update(movie);
+    console.log(title)
+
+    if (title._id != null) {
+      return await TitleRepository.update(title);
     } else {
-      return await TitleRepository.insert(movie);
+      return await TitleRepository.insert(title);
     }
-  }
+  },
 
 }

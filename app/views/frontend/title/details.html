@@ -1,12 +1,13 @@
 {% extends 'frontend/shared/layout.html' %}
 {% import "frontend/shared/card.html" as card %}
+{% import "frontend/shared/cardEpSerie.html" as cardEpSerie %}
 
 {% block content %}
     <div class="safe-area">
         <div class="container">
             <div class="tab-content align-self-end" id="pills-tabContent">
                 
-                <div class="tab-pane fade show active" id="details">
+                <div class="tab-pane fade {{ '' if season else 'show active'  }} " id="details">
                     <div class="overlay"></div>
                     <img src='/uploads/covers/{{ title.imageCoverFilename }}' class="img-featured" alt="">
                     <div class="info-actions">
@@ -28,7 +29,7 @@
                     </div><!-- info actions-->
                 </div><!-- details -->
                 
-                <div class="tab-pane fade" id="eps">
+                <div class="tab-pane fade {{ 'show active' if season else ''  }} " id="eps">
                     
                     <div class="box-showcase">
                         
@@ -36,7 +37,7 @@
                             <div class="dropdown mb-2">
                                 <button class="btn btn-drop btn-dark">
                                     <span class="arrow-down">&rsaquo;</span>
-                                    Temporada 1
+                                    Temporada {{ season if season else '1' }}
                                     <i class="fa fa-caret-down"></i>
                                 </button>
                                 <div class="dropdown-content">
@@ -47,179 +48,10 @@
                                 </div><!-- dropdow content-->
                             </div> <!-- drodown -->
                             <div class="inner">
-                                    <a href="player.html" class="item">
-                                        <div class="card-thumb" style="background-image: url('assets/images/rick-and-morty.jpg')">  
-                                            <div class="card-thumb-infos align-content-center justify-content-center">
-                                                <div class="player">
-                                                    <img src="assets/images/play-button.png">
-                                                </div>
-                                            </div>
-                                        </div><!-- card thumb-->
-                                        <div class="mt-2 d-flex justify-content-between">
-                                            <p class="text-white fontsize">O Piloto</p>
-                                            <p class="text-white fontsize">53h00</p>
-                                        </div>
-                                        
-                                        <p class="text-white fontsize">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur odit est obcaecati eos provident autem nihil ea nesciunt modi? Consequuntur reiciendis
-                                        </p>
-                                    </a>
-                                    
-                                    <a href="#" class="item">
-                                        <div class="card-thumb" style="background-image: url('assets/images/black-mirror.jpg')">
-                                            <div class="card-thumb-infos align-content-center justify-content-center">
-                                                <div class="player">
-                                                    <img src="assets/images/play-button.png">
-                                                </div>
-                                            </div>
-                                        </div><!-- card thumb-->
-                                        <div class="mt-2 d-flex justify-content-between">
-                                            <p class="text-white fontsize">O Piloto</p>
-                                            <p class="text-white fontsize">53h00</p>
-                                        </div>
-                                        
-                                        <p class="text-white fontsize">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur odit est obcaecati eos provident autem nihil ea nesciunt modi? Consequuntur reiciendis
-                                        </p>
-                                    </a>
-                                    
-                                    <a href="#" class="item">
-                                        <div class="card-thumb" style="background-image: url('assets/images/friends.jpeg')">
-                                            <div class="card-thumb-infos align-content-center justify-content-center">
-                                                <div class="player">
-                                                    <img src="assets/images/play-button.png">
-                                                </div>
-                                            </div>
-                                        </div><!-- card thumb-->
-                                        <div class="mt-2 d-flex justify-content-between">
-                                            <p class="text-white fontsize">O Piloto</p>
-                                            <p class="text-white fontsize">53h00</p>
-                                        </div>
-                                        
-                                        <p class="text-white fontsize">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur odit est obcaecati eos provident autem nihil ea nesciunt modi? Consequuntur reiciendis
-                                        </p>
-                                    </a>
-                                    <a href="#" class="item">
-                                        <div class="card-thumb" style="background-image: url('assets/images/stranger-things.jpeg')">
-                                            <div class="card-thumb-infos align-content-center justify-content-center">
-                                                <div class="player">
-                                                    <img src="assets/images/play-button.png">
-                                                </div>
-                                            </div>
-                                        </div><!-- card thumb-->
-                                        <div class="mt-2 d-flex justify-content-between">
-                                            <p class="text-white fontsize">O Piloto</p>
-                                            <p class="text-white fontsize">53h00</p>
-                                        </div>
-                                        
-                                        <p class="text-white fontsize">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur odit est obcaecati eos provident autem nihil ea nesciunt modi? Consequuntur reiciendis
-                                        </p>
-                                    </a>
-                                    <a href="#" class="item">
-                                        <div class="card-thumb" style="background-image: url('assets/images/narcos.jpg')">
-                                            <div class="card-thumb-infos align-content-center justify-content-center">
-                                                <div class="player">
-                                                    <img src="assets/images/play-button.png">
-                                                </div>
-                                            </div>
-                                        </div><!-- card thumb-->
-                                        <div class="mt-2 d-flex justify-content-between">
-                                            <p class="text-white fontsize">O Piloto</p>
-                                            <p class="text-white fontsize">53h00</p>
-                                        </div>
-                                        
-                                        <p class="text-white fontsize">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur odit est obcaecati eos provident autem nihil ea nesciunt modi? Consequuntur reiciendis
-                                        </p>
-                                    </a>
-                                    <a href="#" class="item">
-                                        <div class="card-thumb" style="background-image: url('assets/images/twd.jpg')">
-                                            <div class="card-thumb-infos align-content-center justify-content-center">
-                                                <div class="player">
-                                                    <img src="assets/images/play-button.png">
-                                                </div>
-                                            </div>
-                                        </div><!-- card thumb-->
-                                        <div class="mt-2 d-flex justify-content-between">
-                                            <p class="text-white fontsize">O Piloto</p>
-                                            <p class="text-white fontsize">53h00</p>
-                                        </div>
-                                        
-                                        <p class="text-white fontsize">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur odit est obcaecati eos provident autem nihil ea nesciunt modi? Consequuntur reiciendis
-                                        </p>
-                                    </a>
-                                    <a href="#" class="item">
-                                        <div class="card-thumb" style="background-image: url('assets/images/breaking-bad.jpg')">
-                                            <div class="card-thumb-infos align-content-center justify-content-center">
-                                                <div class="player">
-                                                    <img src="assets/images/play-button.png">
-                                                </div>
-                                            </div>
-                                        </div><!-- card thumb-->
-                                        <div class="mt-2 d-flex justify-content-between">
-                                            <p class="text-white fontsize">O Piloto</p>
-                                            <p class="text-white fontsize">53h00</p>
-                                        </div>
-                                        
-                                        <p class="text-white fontsize">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur odit est obcaecati eos provident autem nihil ea nesciunt modi? Consequuntur reiciendis
-                                        </p>
-                                    </a>
-                                    <a href="#" class="item">
-                                        <div class="card-thumb" style="background-image: url('assets/images/prision-break.jpg')">
-                                            <div class="card-thumb-infos align-content-center justify-content-center">
-                                                <div class="player">
-                                                    <img src="assets/images/play-button.png">
-                                                </div>
-                                            </div>
-                                        </div><!-- card thumb-->
-                                        <div class="mt-2 d-flex justify-content-between">
-                                            <p class="text-white fontsize">O Piloto</p>
-                                            <p class="text-white fontsize">53h00</p>
-                                        </div>
-                                        
-                                        <p class="text-white fontsize">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur odit est obcaecati eos provident autem nihil ea nesciunt modi? Consequuntur reiciendis
-                                        </p>
-                                    </a>
-                                    <a href="#" class="item">
-                                        <div class="card-thumb" style="background-image: url('assets/images/atypical.jpg')">
-                                            <div class="card-thumb-infos align-content-center justify-content-center">
-                                                <div class="player">
-                                                    <img src="assets/images/play-button.png">
-                                                </div>
-                                            </div>
-                                        </div><!-- card thumb-->
-                                        <div class="mt-2 d-flex justify-content-between">
-                                            <p class="text-white fontsize">O Piloto</p>
-                                            <p class="text-white fontsize">53h00</p>
-                                        </div>
-                                        
-                                        <p class="text-white fontsize">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur odit est obcaecati eos provident autem nihil ea nesciunt modi? Consequuntur reiciendis
-                                        </p>
-                                    </a>
-                                    <a href="#" class="item">
-                                        <div class="card-thumb" style="background-image: url('assets/images/thor.jpg')">
-                                            <div class="card-thumb-infos align-content-center justify-content-center">
-                                                <div class="player">
-                                                    <img src="assets/images/play-button.png">
-                                                </div>
-                                            </div>
-                                        </div><!-- card thumb-->
-                                        <div class="mt-2 d-flex justify-content-between">
-                                            <p class="text-white fontsize">O Piloto</p>
-                                            <p class="text-white fontsize">53h00</p>
-                                        </div>
-                                        
-                                        <p class="text-white fontsize">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur odit est obcaecati eos provident autem nihil ea nesciunt modi? Consequuntur reiciendis
-                                        </p>
-                                    </a>
-                                    
+                                    {% for episode in episodes %}
+                                        {{ cardEpSerie.render(title._id, episode) }}
+                                    {% endfor %}
+
                                 </div><!-- carousel inner-->
                         </div><!-- carousel -->
                         
@@ -233,10 +65,10 @@
             </div><!-- tab content-->
             <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" id="details-tab" data-toggle="pill" href="#details">Visão geral</a>
+                    <a class="nav-link {{ '' if season else 'active'  }}" id="details-tab" data-toggle="pill" href="#details">Visão geral</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="eps-tab" data-toggle="pill" href="#eps">Epsódios</a>
+                    <a class="nav-link {{ 'active' if season else ''  }}" id="eps-tab" data-toggle="pill" href="#eps">Epsódios</a>
                 </li>
                 
             </ul>

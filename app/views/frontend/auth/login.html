@@ -8,6 +8,7 @@
         <div class="row no-gutters align-items-center justify-content-center v100">
             <div class="col-md-4">
                 <form action="login" method="post" class="form-login">
+                <input type="hidden" name="returnUrl" value="{{ returnUrl }}">
                 {% if errors %}
                             <div class="alert alert-danger">
                                 {% for error in errors %}

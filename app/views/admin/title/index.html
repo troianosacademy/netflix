@@ -3,8 +3,8 @@
 {% block content %}
 
 <div class="col-md-12 mb-3">
-    <h1 class="float-left">Filmes</h1>
-    <a class="float-right btn btn-outline-primary mt-1" href="/admin/movie">Cadastrar novo</a>
+    <h1 class="float-left">{{ 'Filmes' if type == TitleType.MOVIE else 'Series' }}</h1>
+    <a class="float-right btn btn-outline-primary mt-1" href="/admin/title/?type={{ type }}">Cadastrar novo</a>
 </div>
 
 <div class="col-md-12">
@@ -18,13 +18,13 @@
     </thead>
     <tbody>
 
-    {% for movie in movies %}
+    {% for title in titles %}
         <tr>
-            <td>{{ movie.title }}</td>
-            <td>{{ movie.category.name }}</td>
+            <td>{{ title.title }}</td>
+            <td>{{ title.category.name }}</td>
             <td>
-                <a href="/admin/movie/{{ movie._id }}"><i class="far fa-edit"></i></a> 
-                <a href="/admin/movie/remove/{{ movie._id }}" onclick="return confirm('Tem certeza que deseja remover este item?')"><i class="fas fa-trash"></i></a>
+                <a href="/admin/title/{{ title._id }}"><i class="far fa-edit"></i></a> 
+                <a href="/admin/title/remove/{{ title._id }}" onclick="return confirm('Tem certeza que deseja remover este item?')"><i class="fas fa-trash"></i></a>
             </td>
         </tr>
     {% endfor %}

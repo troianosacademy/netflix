@@ -1,9 +1,9 @@
-{% macro render(id, season, ep) %}
-  <a href="/play?id={{ id }}&season={{ season }}&ep={{ ep.number }}" class="item">
+{% macro render(id, ep) %}
+  <a href="/play?id={{ id }}&ep={{ ep._id }}" class="item">
                                         <div class="card-thumb" style="background-image: url('/uploads/covers/{{ ep.imageCoverFilename }}')">  
                                             <div class="card-thumb-infos align-content-center justify-content-center">
                                                 <div class="player">
-                                                    <img src="assets/images/play-button.png">
+                                                    <img src="frontend/images/play-button.png">
                                                 </div>
                                             </div>
                                         </div><!-- card thumb-->
