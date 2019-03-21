@@ -1,0 +1,44 @@
+{% extends 'admin/shared/layout.html' %}
+
+{% block content %}
+
+<div class="col-md-12 mb-3">
+    <h1 class="float-left">Series</h1>
+    <a class="float-right btn btn-outline-primary mt-1" href="/admin/serie">Cadastrar novo</a>
+</div>
+
+<div class="col-md-12">
+    <table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Título</th>
+            <th scope="col">Categoria</th>
+            <th scope="col">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+
+    {% for serie in series %}
+        <tr>
+            <td>{{ serie.title }}</td>
+            <td>{{ serie.category.name }}</td>
+            <td>
+                <a href="/admin/serie/{{ serie._id }}"><i class="far fa-edit"></i></a> 
+                <a href="/admin/serie/remove/{{ serie._id }}" onclick="return confirm('Tem certeza que deseja remover este item?')"><i class="fas fa-trash"></i></a>
+            </td>
+        </tr>
+    {% endfor %}
+
+    </tbody>
+    </table>
+</div>
+
+{% endblock%}
+
+{% block scripts %}
+    <script>
+        $(document).ready( function () {
+            $('table').DataTable();
+        } );
+    </script>
+{% endblock %}}
