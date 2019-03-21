@@ -5,17 +5,26 @@
         <h1 class="headline text-black">Conta</h1>
         <div class="row no-gutters">
             <div class="col-md-6">
-                
+                   {% if errors %}
+                            <div class="alert alert-danger">
+                                {% for error in errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
                 <form action="#" method="post">
                     <div class="form-group">
-                        <input type="text" name="name" value="{{user.name}}" class="form-control" placeholder="Nome completo">
+                        <input type="text" name="fullname" value="{{user.fullname}}"  class="form-control" placeholder="Nome completo">
                     </div><!-- form group-->
                     <div class="form-group">
-                        <input type="email" name="email" value="{{user.email}}" class="form-control" placeholder="E-mail">
+                        <input type="email" name="email" value="{{user.email}}" readonly class="form-control" placeholder="E-mail">
                     </div><!-- form group-->
                     <div class="form-group">
-                        <input type="password" name="senha" class="form-control" placeholder="Nova senha">
-                    </div><!-- form group-->
+                        <input type="password" name="oldPassword" class="form-control" placeholder="Senha atual">
+                    </div>
+                     <div class="form-group">
+                        <input type="password" name="newPassword" class="form-control" placeholder="Nova senha">
+                    </div>
                     <button class="btn btn-block btn-danger">Alterar conta</button>
                 </form>
             </div><!-- col md 6-->

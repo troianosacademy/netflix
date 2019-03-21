@@ -39,5 +39,23 @@ module.exports = {
     }
 
     return { isValid: errors.length == 0, errors };
+  },
+
+  update: async (user) => {
+    let errors = [];
+
+    if (user.fullname == null || user.fullname.trim().indexOf(' ') <= 0) {
+      errors.push("Informe o nome completo");
+    }
+
+    if (user.newPassword) {
+      if (!(await UserRepository.verifyEmailAndPassword(user.email, md5(user.oldPassword)))) {
+        errors.push("A senha atual não confere");
+      } else if (user.newPassword.length < 6) {
+        errors.push("A senha deve conter no mínimo 6 caracteres");
+      }
+    }
+
+    return { isValid: errors.length == 0, errors };
   }
 }

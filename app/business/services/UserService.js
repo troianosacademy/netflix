@@ -19,6 +19,28 @@ module.exports = {
 
   setLastLogin: async (id, date) => await UserRepository.setLastLogin(id, date),
 
+  update: async (user) => {
+    let validation = await UserValidator.update(user);
+
+    if (!validation.isValid) {
+      return { errors: validation.errors };
+    }
+
+    console.log(user)
+
+    let modifyUser = {
+      _id: user._id,
+      fullname: user.fullname
+    }
+    console.log(modifyUser)
+
+    if (user.newPassword) {
+      modifyUser.password = md5(user.newPassword);
+    }
+
+    return await UserRepository.update(modifyUser);
+  },
+
   insert: async (user, role) => {
     let validation = await UserValidator.register(user);
 

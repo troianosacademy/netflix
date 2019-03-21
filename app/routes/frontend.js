@@ -15,6 +15,7 @@ router.post('/search', authMiddleware(UserRole.CUSTOMER, loginRoute), TitleContr
 router.get('/details', authMiddleware(UserRole.CUSTOMER, loginRoute), TitleController.details);
 router.get('/play', authMiddleware(UserRole.CUSTOMER, loginRoute), TitleController.play);
 router.get('/profile', authMiddleware(UserRole.CUSTOMER, loginRoute), AuthController.profile);
+router.post('/profile', authMiddleware(UserRole.CUSTOMER, loginRoute), AuthController.updateUser);
 
 router.get('/register', AuthController.register);
 router.post('/register', AuthController.saveUser);

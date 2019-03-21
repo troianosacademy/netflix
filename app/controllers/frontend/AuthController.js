@@ -44,4 +44,20 @@ module.exports = {
   profile: (req, res) => {
     res.render('frontend/auth/profile.html', { user: req.session.user });
   },
+
+  updateUser: async (req, res) => {
+    req.body._id = req.session.user._id;
+    let updateUser = await UserService.update(req.body)
+
+    let user = req.session.user;
+    user.fullname = req.body.fullname;
+
+    if (updateUser.errors) {
+      res.render('frontend/auth/profile.html', { user: user, errors: updateUser.errors });
+    } else {
+      req.session.user = user;
+      res.redirect('/profile');
+    }
+
+  }
 }

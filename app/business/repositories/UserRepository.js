@@ -19,4 +19,6 @@ module.exports = {
 
   insert: async (user) => User.create(user),
 
+  update: async (user) => await User.findByIdAndUpdate(user._id, { $set: user }),
+
 }
