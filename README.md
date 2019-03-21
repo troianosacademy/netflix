@@ -9,6 +9,9 @@ Sistema semelhante ao Netflix, projeto final do curso de Nodejs
     npm install
     npm start
 
+    http://localhost>3000/
+    http://localhost:3000/admin
+
 ## Frontend
 
 **1. Autenticação**
