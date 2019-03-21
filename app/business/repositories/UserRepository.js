@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const UserRole = require('../constants/UserRole');
 
 module.exports = {
   getAll: async () => await User.find(),
@@ -20,5 +21,7 @@ module.exports = {
   insert: async (user) => User.create(user),
 
   update: async (user) => await User.findByIdAndUpdate(user._id, { $set: user }),
+
+  hasAdminUser: async () => (await User.countDocuments({ roles: UserRole.ADMIN })) > 0
 
 }

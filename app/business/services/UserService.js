@@ -41,6 +41,17 @@ module.exports = {
     return await UserRepository.update(modifyUser);
   },
 
+  createFirstAdmin: async function() {
+    if (!(await UserRepository.hasAdminUser())) {
+      await this.insert({
+        fullname: 'System admin',
+        password: 'admin.io',
+        email: 'admin@io',
+        roles: [UserRole.ADMIN, UserRole.CUSTOMER]
+      });
+    }
+  },
+
   insert: async (user, role) => {
     let validation = await UserValidator.register(user);
 
@@ -52,7 +63,7 @@ module.exports = {
 
     let result = await UserRepository.insert(user);
 
-    if (result._id != null)
+    if (result._id != null && role != null)
       await UserRepository.addRole(result._id, role);
 
     return result;

@@ -9,8 +9,11 @@ Sistema semelhante ao Netflix, projeto final do curso de Nodejs
     npm install
     npm start
 
-    http://localhost>3000/
+    http://localhost:3000/
     http://localhost:3000/admin
+
+    Default user: admin@io
+    Default password: admin.io
 
 ## Frontend
 
@@ -28,7 +31,7 @@ Sistema semelhante ao Netflix, projeto final do curso de Nodejs
 - [ ] Listagem de episódios por série
 - [x] Player de filmes e séries
 - [x] Busca
-- [ ] Alterar dados do usuário
+- [x] Alterar dados do usuário
 
 ## Admin
 
