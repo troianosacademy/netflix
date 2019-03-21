@@ -1,0 +1,20 @@
+{% extends 'frontend/shared/layout.html' %}
+{% import "frontend/shared/card.html" as card %}
+
+{% block content %}
+    
+    <div class="container full">
+        <div class="row no-gutters mb-5">
+        {% if titles.length %}
+            <h1 class="headline">Títulos encontratos por "{{ q }}"</h1>  
+        {% else %}
+            <h1 class="headline">Nenhum título encontrado por "{{ q }}"</h1>  
+
+        {% endif %}
+        </div><!-- row -->
+       {% for title in titles %}
+            {{ card.render(title) }}
+        {%endfor%}
+        
+    </div><!-- container -->
+ {% endblock %}

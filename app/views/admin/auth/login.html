@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Projeto Netflix</title>
+    <link rel="stylesheet" href="/admin/css/bootstrap.min.css">
+</head>
+<body>
+
+ <div class="container">
+        <div class="row no-gutters align-items-center justify-content-center v100">
+            <div class="col-md-4">
+                <form action="/admin/login" method="post" class="form-login">
+                {% if errors %}
+                            <div class="alert alert-danger">
+                                {% for error in errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    <h1 class="headline mb-3">Entrar</h1>
+                    <div class="form-group">
+                        <input type="email" name="email" value="{{email}}" required class="form-control form-control-lg" placeholder="E-mail">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="password" required class="form-control form-control-lg" placeholder="Senha">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-block btn-lg btn-danger">Entrar</button>
+                    </div>
+                    <div class="form-group d-flex justify-content-between">
+                        <span class="text-white">Novo por aqui?</span> <a class="text-white" href="/register">Cadastrar-se</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+    <script src="/admin/js/jquery-3.3.1.min.js"></script>
+    <script src="/admin/js/bootstrap.min.js"></script>
+    <script src="/admin/js/app.js"></script>
+    
+</body>
+</html>

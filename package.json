@@ -1,0 +1,31 @@
+{
+  "name": "netflix",
+  "version": "1.0.0",
+  "description": "Sistema semelhante ao Netflix, projeto final do curso de Nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/troianosacademy/netflix.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/troianosacademy/netflix/issues"
+  },
+  "homepage": "https://github.com/troianosacademy/netflix#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.4",
+    "dotenv-safe": "^6.1.0",
+    "express": "^4.16.4",
+    "express-fileupload": "^1.1.3-alpha.1",
+    "express-session": "^1.15.6",
+    "md5": "^2.2.1",
+    "mongoose": "^5.4.19",
+    "nunjucks": "^3.2.0"
+  }
+}

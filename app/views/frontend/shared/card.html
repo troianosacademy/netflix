@@ -1,0 +1,32 @@
+{% macro render(title) %}
+
+{% if(title.type == 'movie') %}
+ <a href="play?id={{ title._id }}" class="item">
+ {% else %}
+ <a href="details?id={{ title._id }}" class="item">
+ {% endif %}
+                        <div class="card-thumb" style="background-image: url('/uploads/covers/{{ title.imageCoverFilename }}')">
+                            <div class="card-thumb-infos">
+                                <div class="w-100 mb-1">
+                                    <h3 class="card-thumb-title">{{ title.title }}</h3>
+                                </div>
+                                <div class="w-100 mb-1">
+                                    <span class="ranking">Novo</span>
+                                    <span class="age">{{ title.age }}</span>
+                                    <span class="time">
+                                        {% if title.type == 'movie' %}
+                                            {{ title.durationMinutes }} minutos
+                                        {% else %}
+                                            {{ title.seasons.length }} temporadas
+                                        {% endif %}
+                                    </span>
+                                </div>
+                                <div class="w-100">
+                                {% for tag in title.tags %}
+                                    <span class="tags">{{ tag }} {% if loop.last == false %}-{% endif %}</span>
+                                {% endfor %}
+                                </div>
+                            </div><!-- card thumb infos-->
+                        </div><!-- card thumb-->
+                    </a>
+{% endmacro %}

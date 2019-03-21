@@ -1,0 +1,67 @@
+{% extends 'frontend/shared/layout.html' %}
+
+{% block content %}
+    <div class="container conta mb-5">
+        <h1 class="headline text-black">Conta</h1>
+        <div class="row no-gutters">
+            <div class="col-md-6">
+                
+                <form action="#" method="post">
+                    <div class="form-group">
+                        <input type="text" name="name" value="{{user.name}}" class="form-control" placeholder="Nome completo">
+                    </div><!-- form group-->
+                    <div class="form-group">
+                        <input type="email" name="email" value="{{user.email}}" class="form-control" placeholder="E-mail">
+                    </div><!-- form group-->
+                    <div class="form-group">
+                        <input type="password" name="senha" class="form-control" placeholder="Nova senha">
+                    </div><!-- form group-->
+                    <button class="btn btn-block btn-danger">Alterar conta</button>
+                </form>
+            </div><!-- col md 6-->
+        </div><!-- row-->
+    </div><!-- container -->
+    
+    
+    <footer class="footer">
+        <div class="container">
+            <div class="row no-gutters mb-4 mt-4">
+                <a href="#"><img src="assets/images/facebook.png" class="mr-3" alt=""></a>
+                <a href="#"><img src="assets/images/instagram.png" class="mr-3" alt=""></a>
+                <a href="#"><img src="assets/images/twitter.png" class="mr-3" alt=""></a>
+                <a href="#"><img src="assets/images/youtube.png" class="mr-3" width="40" alt=""></a>
+            </div><!-- row no gutters-->
+            <div class="row">
+                <div class="col-md-3 d-flex flex-column flex-wrap">
+                    <a href="" class="footer-link">Idiomas e legendas</a>
+                    <a href="" class="footer-link">Imprensa</a>
+                    <a href="" class="footer-link">Privacidade</a>
+                    <a href="" class="footer-link">Entre em contato</a>
+                </div><!-- col md 3-->
+                <div class="col-md-3 d-flex flex-column flex-wrap">
+                    <a href="" class="footer-link">Autodescrição</a>
+                    <a href="" class="footer-link">Relações com investidores</a>
+                    <a href="" class="footer-link">Avisos legais</a>
+                </div><!-- col md 3-->
+                <div class="col-md-3 d-flex flex-column flex-wrap">
+                    <a href="" class="footer-link">Central de ajuda</a>
+                    <a href="" class="footer-link">Carreiras</a>
+                    <a href="" class="footer-link">Preferência de cookies</a>
+                </div><!-- col md 3-->
+                <div class="col-md-3 d-flex flex-column flex-wrap">
+                    <a href="" class="footer-link">Cartão pré-pago</a>
+                    <a href="" class="footer-link">Termos de uso</a>
+                    <a href="" class="footer-link">Informações corporativas</a>
+                </div><!-- col md 3-->
+            </div><!-- row -->
+        </div><!-- container -->
+    </footer>
+    
+    
+    <script src="assets/js/jquery-3.3.1.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/app.js"></script>
+    
+</body>
+</html>
+{% endblock %}

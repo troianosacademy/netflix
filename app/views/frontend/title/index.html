@@ -1,0 +1,48 @@
+{% extends 'frontend/shared/layout.html' %}
+{% import "frontend/shared/card.html" as card %}
+
+{% block content %}
+<div class="safe-area">
+        <div class="container">
+            <div class="overlay"></div>
+            <img src="/uploads/covers/{{ fixedTitle.imageCoverFilename }}" class="img-featured" alt="">
+            <div class="info-actions">
+                <h1 class="headline">
+                    {{ fixedTitle.title }}
+                </h1>
+                {% if(title.type == 'movie') %}
+
+                 <a href="play?id={{ fixedTitle._id }}" class="btn btn-dark">
+                    {% else %}
+                    <a href="details?id={{ fixedTitle._id }}" class="btn btn-dark">
+                    {% endif %}
+                    <img src="frontend/images/play-button.png" alt="">
+                    Assistir
+                </a>
+                <p class="mt-3 text-white"> {{ fixedTitle.synopsis }}</p>
+            </div><!-- info actions-->
+        </div><!-- container-->
+    </div><!-- safe area -->
+    
+    
+    <div class="showcases">
+       {% for item in model %}
+        <div class="box-showcase">
+            <div class="carousel">
+                <h2 class="headline">{{item.category}}</h2>
+                <div class="inner">
+                    {% for title in item.titles %}
+                        {{ card.render(title) }}
+                    {%endfor%}
+
+                </div><!-- carousel inner-->
+            </div><!-- carousel -->
+            
+            <button class="navigation right" data-target="nav-right">&raquo;</button>
+            <button class="navigation left" data-target="nav-left">&laquo;</button>
+            
+        </div><!-- box showcase lançamento-->
+        {%endfor%}
+        
+    </div><!-- showcases -->
+{% endblock %}
