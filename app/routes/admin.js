@@ -4,7 +4,7 @@ const CategoryController = require('../controllers/admin/CategoryController');
 const TitleController = require('../controllers/admin/TitleController');
 
 const authMiddleware = require('../middlewares/authMiddleware');
-const UserRole = require('../business/Constants/UserRole');
+const UserRole = require('../business/constants/UserRole');
 
 const express = require('express');
 
