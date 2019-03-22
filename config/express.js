@@ -21,11 +21,16 @@ nunjucks.configure(path.join(__dirname, '/../app/views'), {
 });
 
 app.use(cookieParser());
-app.use(session({ secret: "Shh, its a secret!" }));
+app.use(session({
+  secret: 'keyboard cat',
+  cookie: { maxAge: 60000 },
+  resave: false,
+  saveUninitialized: true,
+}))
 
 app.use(fileUpload({
   useTempFiles: true,
-  tempFileDir: 'tmp/'
+  tempFileDir: '/tmp/'
 }));
 
 app.use('/admin', routesAdmin);
