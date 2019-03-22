@@ -8,6 +8,7 @@ Sistema semelhante ao Netflix, projeto final do curso de Nodejs
     cd netflix
     npm install
     npm start
+    npm install -g nodemon
 
     http://localhost:3000/
     http://localhost:3000/admin
