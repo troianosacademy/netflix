@@ -53,7 +53,7 @@ module.exports = {
   },
 
   play: async (req, res) => {
-    res.render('frontend/title/player.html', { title: req.query.ep ? await TitleService.getEpisodeById(req.query.ep) : await TitleService.getById(req.query.id) });
+    res.render('frontend/title/player.html', { referer: req.headers.referer, title: req.query.ep ? await TitleService.getEpisodeById(req.query.ep) : await TitleService.getById(req.query.id) });
   },
 
   search: async (req, res) => {
