@@ -16,5 +16,18 @@ module.exports = mongoose.model('Title', {
   createdAt: Date,
   isFixedOnHome: Boolean,
   totalSeasons: Number,
-  seasons: [{ number: Number, totalEpisodes: Number, year: Number, episodes: [{ videoFileName: String, title: String, durationMinutes: Number, synopsis: String, imageCoverFilename: String, number: Number }] }]
+  seasons: [
+    { number: Number,
+      episodesCount: Number,
+      year: Number,
+      episodes: [
+        { 
+          videoFileName: String,
+          title: String,
+          durationMinutes: Number,
+          synopsis: String,
+          imageCoverFilename: String,
+          number: Number 
+        }]
+       }]
 });

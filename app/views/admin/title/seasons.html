@@ -1,0 +1,44 @@
+{% extends 'admin/shared/layout.html' %}
+
+{% block content %}
+
+<div class="col-md-12 mb-3">
+    <h1 class="float-left">Temporadas de {{ title.title }}</h1>
+    <a class="float-right btn btn-outline-primary mt-1" href="/admin/serie/{{ title._id }}/season">Cadastrar nova</a>
+</div>
+
+<div class="col-md-12">
+    <table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Temporada</th>
+            <th scope="col">Episódios</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+    {% for season in title.seasons %}
+        <tr>
+            <td>Temporada {{ season.number }}</td>
+            <td> {{ season.episodesCount }} </td>
+            <td>
+                <a href="/admin/serie/{{ title._id }}/season/{{ season._id }}"><i class="far fa-edit"></i></a> 
+                <a href="/admin/serie/{{ title._id }}/season/{{ season._id }}/remove" onclick="return confirm('Tem certeza que deseja remover este item?')"><i class="fas fa-trash"></i></a>
+            </td>
+        </tr>
+    {% endfor %}
+
+    </tbody>
+    </table>
+</div>
+
+{% endblock%}
+
+{% block scripts %}
+    <script>
+        $(document).ready( function () {
+            $('table').DataTable();
+        } );
+    </script>
+{% endblock %}}

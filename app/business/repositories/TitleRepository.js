@@ -73,6 +73,26 @@ module.exports = {
     ]).then(x => x[0] ? x[0].episodes : null)
   },
 
+  getSeasonById: async(id) =>{
+    return Title.findOne({'seasons._id': id},{'seasons.$': 1}).then(x=> x != null ? x.seasons[0] : null );
+  },
+
+  updateSeason: async (season) => {
+    return await Title.updateOne(
+    { 'seasons._id': mongoose.Types.ObjectId(season._id) },
+     { $set: {'seasons.$' : season} }
+  )},
+
+  addSeason: async (titleId, season) => await Title.updateOne(
+    { '_id': mongoose.Types.ObjectId(titleId) },
+    { $push: { seasons : season} }
+  ),
+
+  removeSeason: async (titleId, seasonId) => await Title.updateOne(
+    {'_id': mongoose.Types.ObjectId(titleId) }, 
+    { $pull: { "seasons" : { _id: mongoose.Types.ObjectId(seasonId) } } },
+  ),
+
   getAllGroupByCategory: async () => {
     return await Title.aggregate([
       { $match: { $or: [{ isFixedOnHome: null }, { isFixedOnHome: false }] } },

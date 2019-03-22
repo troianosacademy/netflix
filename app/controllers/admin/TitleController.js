@@ -37,4 +37,33 @@ module.exports = {
     return res.redirect(req.headers.referer);
   },
 
+  seasons: async (req, res) => {
+    return res.render('admin/title/seasons.html', { title : await TitleService.getById(req.params.titleId) });
+  },
+
+  season : async (req, res) => {
+    
+    let season = {};
+
+    if(req.params.id){
+        season = await TitleService.getSeasonById(req.params.id);
+    }
+
+    return res.render('admin/title/season.html', { titleId: req.params.titleId, season });
+  },
+
+  saveSeason: async(req, res) => {
+      let titleId = req.body.titleId;
+      delete req.body.titleId;
+
+      await TitleService.saveSeason(titleId, req.body);
+
+      return res.redirect(`/admin/serie/${titleId}/seasons`)
+  },
+
+  removeSeason: async(req,res) => {
+    season = await TitleService.removeSeason(req.params.titleId,req.params.id);
+    return res.redirect(req.headers.referer)
+  },
+
 }

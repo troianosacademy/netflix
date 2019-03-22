@@ -14,29 +14,36 @@ const loginRoute = '/admin/login';
 router.get('/', authMiddleware(UserRole.ADMIN, loginRoute), DashboardController.index);
 
 /* Auth */
-router.get('/login', AuthController.login);
+router.get('/login',  AuthController.login);
 router.post('/login', AuthController.sigin);
+router.get('/logout', AuthController.logout);
+
 
 /* Category */
-router.get('/categories', CategoryController.index);
-router.get('/category/:id', CategoryController.record);
-router.get('/category', CategoryController.record);
-router.get('/category/remove/:id', CategoryController.remove);
-router.post('/category', CategoryController.save);
-router.post('/category/:id', CategoryController.save);
+router.get('/categories', authMiddleware(UserRole.ADMIN, loginRoute), CategoryController.index);
+router.get('/category/:id', authMiddleware(UserRole.ADMIN, loginRoute), CategoryController.record);
+router.get('/category', authMiddleware(UserRole.ADMIN, loginRoute), CategoryController.record);
+router.get('/category/remove/:id', authMiddleware(UserRole.ADMIN, loginRoute), CategoryController.remove);
+router.post('/category', authMiddleware(UserRole.ADMIN, loginRoute), CategoryController.save);
+router.post('/category/:id', authMiddleware(UserRole.ADMIN, loginRoute), CategoryController.save);
 
 /* Title */
-router.get('/movies', TitleController.movies);
-router.get('/series', TitleController.series);
-router.get('/title/setFixedOnHome', TitleController.setFixedOnHome);
+router.get('/movies', authMiddleware(UserRole.ADMIN, loginRoute), TitleController.movies);
+router.get('/series', authMiddleware(UserRole.ADMIN, loginRoute), TitleController.series);
+router.get('/title/setFixedOnHome', authMiddleware(UserRole.ADMIN, loginRoute), TitleController.setFixedOnHome);
+router.get('/serie/:titleId/seasons', authMiddleware(UserRole.ADMIN, loginRoute), TitleController.seasons);
+router.get(['/serie/:titleId/season','/serie/:titleId/season/:id'], authMiddleware(UserRole.ADMIN, loginRoute), TitleController.season);
+router.post(['/serie/:titleId/season','/serie/:titleId/season/:id'], authMiddleware(UserRole.ADMIN, loginRoute), TitleController.saveSeason);
 
-router.get(['/title', '/title/:id'], TitleController.record);
-router.post(['/title', '/title/:id'], TitleController.save);
+router.get('/serie/:titleId/season/:id/remove', authMiddleware(UserRole.ADMIN, loginRoute), TitleController.removeSeason)
+
+router.get(['/title', '/title/:id'], authMiddleware(UserRole.ADMIN, loginRoute), TitleController.record);
+router.post(['/title', '/title/:id'], authMiddleware(UserRole.ADMIN, loginRoute), TitleController.save);
 
 /* Users */
-router.get('/users', AuthController.index);
-router.get('/user/setDisabled', AuthController.setDisabled);
-router.get('/user/:id', AuthController.edit);
-router.post('/user/:id', AuthController.save);
+router.get('/users', authMiddleware(UserRole.ADMIN, loginRoute), AuthController.index);
+router.get('/user/setDisabled', authMiddleware(UserRole.ADMIN, loginRoute), AuthController.setDisabled);
+router.get('/user/:id', authMiddleware(UserRole.ADMIN, loginRoute), AuthController.edit);
+router.post('/user/:id', authMiddleware(UserRole.ADMIN, loginRoute), AuthController.save);
 
 module.exports = router;

@@ -43,6 +43,20 @@ module.exports = {
     });
   },
 
+  getSeasonById: async(id) => await TitleRepository.getSeasonById(id),
+
+  saveSeason: async(titleId,season) => { 
+    if(season._id != null && season._id != ""){
+      return await TitleRepository.updateSeason(season)
+    } else{
+      delete season._id;
+     return  await TitleRepository.addSeason(titleId, season)
+    }
+  
+  },
+
+  removeSeason: async(titleId, seasonId) => await TitleRepository.removeSeason(titleId, seasonId),
+
   save: async function(title) {
     let validation = await TitleValidator.save(title);
 
@@ -57,8 +71,6 @@ module.exports = {
     if (title.fileVideo && title.fileVideo.size) {
       title.videoFileName = await this.upload(title.fileVideo, 'public/uploads/movies');
     }
-
-    console.log(title)
 
     if (title._id != null) {
       return await TitleRepository.update(title);

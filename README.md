@@ -59,7 +59,7 @@ Sistema semelhante ao Netflix, projeto final do curso de Nodejs
 - [x] Listagem
 - [x] Cadastro com validação e upload de arquivo (capa)
 - [x] Edição com validação e upload de arquivo (capa)
-- [ ] Cadastro de temporadas com validação
+- [x] Cadastro de temporadas com validação
 - [ ] Upload de vídeos e capas para cada episódio por temporada
 
 **5. Usuários**

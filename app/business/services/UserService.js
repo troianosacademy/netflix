@@ -83,7 +83,16 @@ module.exports = {
       return validation;
     }
 
-    user.password = md5(user.password);
-    return await UserRepository.update(user);
+    let modifyUser = {
+      _id: user._id,
+      fullname: user.fullname,
+      email: user.email,
+    }
+
+    if(user.password != null && user.password != ''){
+      modifyUser.password = md5(user.password);
+    } 
+
+    return await UserRepository.update(modifyUser);
   }
 };
