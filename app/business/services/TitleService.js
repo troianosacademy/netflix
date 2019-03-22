@@ -31,7 +31,7 @@ module.exports = {
 
   upload: async (file, dir) => {
     return new Promise((resolve, error) => {
-      const filename = md5(new Date() + path.extname(file.name));
+      const filename = md5(new Date()) + path.extname(file.name);
 
       file.mv(dir + filename, function(err) {
         if (err)
