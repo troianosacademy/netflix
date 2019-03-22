@@ -64,6 +64,7 @@ Sistema semelhante ao Netflix, projeto final do curso de Nodejs
 
 **5. Usuários**
 
-- [ ] Listagem
-- [ ] Desabilitar um usuário
-- [ ] Tornar usuário admin
+- [x] Listagem
+- [x] Desabilitar um usuário
+- [x] Edição do usuário com validação 
+- [x] Gerenciar permissões de um usuário

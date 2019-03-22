@@ -1,0 +1,46 @@
+{% extends 'admin/shared/layout.html' %}
+
+{% block content %}
+
+<div class="col-md-12 mb-3">
+    <h1 class="float-left">Usuários</h1>
+</div>
+
+<div class="col-md-12">
+    <table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Email</th>
+            <th scope="col">Status</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+    {% for user in users %}
+        <tr>
+            <td>{{ user.fullname }}</td>
+            <td>{{ user.email }}</td>
+            <td><a href="/admin/user/setDisabled?id={{ user._id }}&value={{ 'false' if user.disabled else 'true' }}" onclick="return confirm('Tem certeza que deseja {{ 'habilitar' if user.disabled else 'desabilitar' }} este usuário?')"><i class="fas fa-{{ 'square' if user.disabled else 'check-square' }}"></i></a>
+
+            <td>
+                <a href="/admin/user/{{ user._id }}"><i class="far fa-edit"></i></a> 
+            </td>
+        </tr>
+    {% endfor %}
+
+    </tbody>
+    </table>
+</div>
+
+{% endblock%}
+
+{% block scripts %}
+    <script>
+        $(document).ready( function () {
+            console.log("ok")
+            $('table').DataTable();
+        } );
+    </script>
+{% endblock %}}

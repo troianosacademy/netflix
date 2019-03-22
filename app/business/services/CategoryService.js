@@ -13,7 +13,6 @@ module.exports = {
   save: async (category) => {
 
     let validation = await CategoryValidator.save(category);
-    console.log(category);
 
     if (!validation.isValid) {
       return validation;
@@ -23,7 +22,6 @@ module.exports = {
       category._id = null;
       return await CategoryRepository.insert(category);
     } else {
-      console.log('editando')
       return await CategoryRepository.update(category);
     }
   },

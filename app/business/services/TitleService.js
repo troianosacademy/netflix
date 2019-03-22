@@ -29,6 +29,8 @@ module.exports = {
 
   getRecents: async () => await TitleRepository.getRecents(),
 
+  setFixedOnHome: async (id) => await TitleRepository.setFixedOnHome(id),
+
   upload: async (file, dir) => {
     return new Promise((resolve, error) => {
       const filename = md5(new Date()) + path.extname(file.name);

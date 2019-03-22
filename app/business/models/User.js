@@ -5,5 +5,6 @@ module.exports = mongoose.model('User', {
   email: String,
   password: String,
   lastLogin: Date,
-  roles: [String]
+  roles: [String],
+  disabled: Boolean,
 });

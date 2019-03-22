@@ -25,6 +25,10 @@
             <td>
                 <a href="/admin/title/{{ title._id }}"><i class="far fa-edit"></i></a> 
                 <a href="/admin/title/remove/{{ title._id }}" onclick="return confirm('Tem certeza que deseja remover este item?')"><i class="fas fa-trash"></i></a>
+                {% if not title.isFixedOnHome %}
+                    <a href="/admin/title/setFixedOnHome?id={{ title._id }}">Fixar na home</a> 
+                {% endif %}
+
             </td>
         </tr>
     {% endfor %}

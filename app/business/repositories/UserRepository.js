@@ -10,11 +10,13 @@ module.exports = {
 
   verifyEmailAvaliable: async email => (await User.countDocuments({ email })) == 0,
 
-  verifyEmailAndPassword: async (email, password) => (await User.countDocuments({ email, password })) > 0,
+  verifyEmailAndPassword: async (email, password) => (await User.countDocuments({ disabled: false, email, password })) > 0,
 
   getByEmailAndPassword: async (email, password) => User.findOne({ email, password }),
 
-  setLastLogin: async (id, date) => User.updateOne({ _id: id }, { $set: { lastLogin: date } }),
+  setLastLogin: async (id, date) => User.findByIdAndUpdate(id, { $set: { lastLogin: date } }),
+
+  setDisabled: async (id, value) => User.findByIdAndUpdate(id, { $set: { disabled: value } }),
 
   addRole: async (id, role) => User.updateOne({ _id: id }, { $push: { roles: role } }),
 

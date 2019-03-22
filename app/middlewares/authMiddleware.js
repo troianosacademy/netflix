@@ -4,7 +4,7 @@ module.exports = (role, loginRoute) => {
       loginRoute += "?returnUrl=" + encodeURIComponent(req.url);
     }
 
-    if (req.session.user == null || (req.session.user != null && req.session.user.roles.indexOf(role) == -1)) return res.redirect(loginRoute);
+    if (req.session.user == null || (req.session.user != null && !req.session.user.roles.includes(role))) return res.redirect(loginRoute);
     return next();
   }
 }

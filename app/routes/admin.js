@@ -28,7 +28,15 @@ router.post('/category/:id', CategoryController.save);
 /* Title */
 router.get('/movies', TitleController.movies);
 router.get('/series', TitleController.series);
+router.get('/title/setFixedOnHome', TitleController.setFixedOnHome);
+
 router.get(['/title', '/title/:id'], TitleController.record);
 router.post(['/title', '/title/:id'], TitleController.save);
+
+/* Users */
+router.get('/users', AuthController.index);
+router.get('/user/setDisabled', AuthController.setDisabled);
+router.get('/user/:id', AuthController.edit);
+router.post('/user/:id', AuthController.save);
 
 module.exports = router;

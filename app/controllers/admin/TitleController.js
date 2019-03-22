@@ -31,4 +31,10 @@ module.exports = {
       res.redirect(title.type == TitleType.MOVIE ? '/admin/movies' : '/admin/series');
     }
   },
+
+  setFixedOnHome: async (req, res) => {
+    await TitleService.setFixedOnHome(req.query.id);
+    return res.redirect(req.headers.referer);
+  },
+
 }

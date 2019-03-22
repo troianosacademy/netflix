@@ -31,7 +31,7 @@ module.exports = {
 
     let extensionsImages = [".jpg", ".png", ".jpeg"]
 
-    if (title.fileImageCover && title.fileImageCover.size && extensionsImages.indexOf(path.extname(title.fileImageCover.name)) < 0) {
+    if (title.fileImageCover && title.fileImageCover.size && !extensionsImages.includes(path.extname(title.fileImageCover.name))) {
       errors.push("A extensão da imagem de capa deve ser " + extensionsImages);
     }
 

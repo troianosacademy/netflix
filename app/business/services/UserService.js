@@ -15,9 +15,17 @@ module.exports = {
 
   getByEmailAndPassword: async (email, password) => await UserRepository.getByEmailAndPassword(email, md5(password)),
 
-  login: async (email, password) => await UserValidator.login(email, password),
+  setDisabled: async (id, value) => { console.log("service"); await UserRepository.setDisabled(id, value)},
 
-  setLastLogin: async (id, date) => await UserRepository.setLastLogin(id, date),
+  login: async (email, password) => {
+    let validation = await UserValidator.login(email, password);
+
+    if (validation.isValid) {
+      await UserRepository.setLastLogin((await UserRepository.getByEmail(email))._id, new Date());
+    }
+
+    return validation;
+  },
 
   update: async (user) => {
     let validation = await UserValidator.update(user);
@@ -26,13 +34,10 @@ module.exports = {
       return { errors: validation.errors };
     }
 
-    console.log(user)
-
     let modifyUser = {
       _id: user._id,
       fullname: user.fullname
     }
-    console.log(modifyUser)
 
     if (user.newPassword) {
       modifyUser.password = md5(user.newPassword);
@@ -47,6 +52,7 @@ module.exports = {
         fullname: 'System admin',
         password: 'admin.io',
         email: 'admin@io',
+        disabled: false,
         roles: [UserRole.ADMIN, UserRole.CUSTOMER]
       });
     }
@@ -60,6 +66,7 @@ module.exports = {
     }
 
     user.password = md5(user.password);
+    user.disabled = false;
 
     let result = await UserRepository.insert(user);
 
@@ -67,5 +74,16 @@ module.exports = {
       await UserRepository.addRole(result._id, role);
 
     return result;
+  },
+
+  edit: async (user) => {
+    let validation = await UserValidator.edit(user);
+
+    if (!validation.isValid) {
+      return validation;
+    }
+
+    user.password = md5(user.password);
+    return await UserRepository.update(user);
   }
 };

@@ -42,6 +42,14 @@ module.exports = {
 
   getFixedOnHome: async function() { return await this.getBy({ isFixedOnHome: true }).then(results => results[0]) },
 
+  setFixedOnHome: async function(id) {
+    console.log("aquii")
+    console.log(id)
+    await Title.updateMany({}, { isFixedOnHome: false });
+    console.log(id)
+    return await Title.findByIdAndUpdate(id, { isFixedOnHome: true });
+  },
+
   getEpisodeById: async function(episodeId) {
 
     return Title.aggregate([
