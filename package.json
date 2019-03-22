@@ -19,6 +19,7 @@
   "homepage": "https://github.com/troianosacademy/netflix#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "connect-mongo": "^2.0.3",
     "cookie-parser": "^1.4.4",
     "dotenv-safe": "^6.1.0",
     "express": "^4.16.4",
