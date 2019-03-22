@@ -2,7 +2,7 @@ const express = require('express');
 const TitleController = require('../controllers/frontend/TitleController');
 const AuthController = require('../controllers/frontend/AuthController');
 const authMiddleware = require('../middlewares/authMiddleware');
-const UserRole = require('../business/Constants/UserRole');
+const UserRole = require('../business/constants/UserRole');
 
 const router = express.Router();
 const loginRoute = '/login';
