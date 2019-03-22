@@ -10,8 +10,8 @@
                 <h1 class="headline">
                     {{ fixedTitle.title }}
                 </h1>
-                {% if(title.type == 'movie') %}
 
+                {% if(fixedTitle.type == 'movie') %}
                  <a href="play?id={{ fixedTitle._id }}" class="btn btn-dark">
                     {% else %}
                     <a href="details?id={{ fixedTitle._id }}" class="btn btn-dark">
